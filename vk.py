@@ -1,5 +1,6 @@
 import requests
 import time
+import datetime
 from tqdm import tqdm
 
 
@@ -28,15 +29,25 @@ class Vk:
             return self._user_id
 
     def get_name_for_item(self, item):
+        # uploaded_int = item['date']
+        # uploaded_date = datetime.datetime.fromtimestamp(
+        #     int(uploaded_int)
+        # ).strftime('%Y-%m-%d %H:%M:%S')
+        #
+        # print(uploaded_date.__class__)
 
         likes = item['likes']['count']
-        # if likes in self.items_names:
-        #     name = f"{likes}_{item['id']}"
-        # else:
-        #     name = likes
-        # self.items_names.append(name)
+        if likes in self.items_names:
+            uploaded_int = item['date']
+            uploaded_date = datetime.datetime.fromtimestamp(
+                int(uploaded_int)
+            ).strftime('%Y.%m.%d_%H_%M_%S')
 
-        name = f"{likes}"
+            name = f"{likes}_{uploaded_date}"
+        else:
+            name = likes
+
+        self.items_names.append(name)
 
         return  (f"{name}.jpg")
 
