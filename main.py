@@ -19,7 +19,7 @@ def main():
     if len(vk_id) > 0:
         vk.user_id = vk_id
 
-    backup_dir = "mybackups" # Можно конечно и запрашивать
+    backup_dir = "mybackups" # Можно конечно и запрашивать.
     photos = vk.get_photos()
 
     print(f"Выгружаем фото в Yandex: {len(photos)} фото")
